@@ -4,15 +4,16 @@ import CoreConcept from './components/CoreConcept/CoreConcept.jsx';
 import TabButton from './components/TabButton/TabButton.jsx';
 
 import { CORE_CONCEPTS } from './data';
+import { EXAMPLES } from './data';
 
 
 
 function App() {
-  const [content, setContent] = useState("Press a Button")
+  const [selectedTopic, setSelectedTopic] = useState();
 
 
     function handleClick(selectedButton){
-      setContent(selectedButton);
+      setSelectedTopic(selectedButton);
       //console.log (selectedButton);
     }
 
@@ -58,12 +59,38 @@ function App() {
         <section id="examples">
             <h2>Examples</h2>
             <menu>
-              <TabButton handleClick={()=>{handleClick('Components')}}>Components</TabButton>
+              <TabButton handleClick={()=>{handleClick('components')}}>Components</TabButton>
               <TabButton handleClick={()=>{handleClick('jsx')}}>JSX</TabButton>
-              <TabButton handleClick={()=>{handleClick('Props')}}>Props</TabButton>
-              <TabButton handleClick={()=>{handleClick('State')}}>State</TabButton>
+              <TabButton handleClick={()=>{handleClick('props')}}>Props</TabButton>
+              <TabButton handleClick={()=>{handleClick('state')}}>State</TabButton>
             </menu>
-            {content}
+            
+            {selectedTopic === undefined ? (
+            <p>Please select a topic.</p>
+            ):(
+              (
+              <div id = "tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>
+                  {EXAMPLES[selectedTopic].code}
+                </code>
+              </pre>
+                </div> 
+              )
+              )}
+          
+
+           { /* <div>
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>
+                  {EXAMPLES[selectedTopic].code}
+                </code>
+              </pre>
+                </div> */}
         </section>
        </main>
 

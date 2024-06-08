@@ -33,7 +33,10 @@ function App() {
 
           <ul>
             
-            <CoreConcept
+            {CORE_CONCEPTS.map((conceptItem) =>
+             <CoreConcept {... conceptItem}/>)}
+
+            {/* <CoreConcept
             image={CORE_CONCEPTS[0].image}
             title={CORE_CONCEPTS[0].title}
             description={CORE_CONCEPTS[0].description}
@@ -51,7 +54,7 @@ function App() {
             image={CORE_CONCEPTS[3].image}
             title={CORE_CONCEPTS[3].title}
             description={CORE_CONCEPTS[3].description}
-            />
+            />*/}
           
           </ul>
 
@@ -59,10 +62,10 @@ function App() {
         <section id="examples">
             <h2>Examples</h2>
             <menu>
-              <TabButton handleClick={()=>{handleClick('components')}}>Components</TabButton>
-              <TabButton handleClick={()=>{handleClick('jsx')}}>JSX</TabButton>
-              <TabButton handleClick={()=>{handleClick('props')}}>Props</TabButton>
-              <TabButton handleClick={()=>{handleClick('state')}}>State</TabButton>
+              <TabButton isSelected = {selectedTopic === 'components'} onClick={()=>{handleClick('components')}}>Components</TabButton>
+              <TabButton isSelected = {selectedTopic === 'jsx'}  onClick={()=>{handleClick('jsx')}}>JSX</TabButton>
+              <TabButton isSelected = {selectedTopic === 'props'}  onClick={()=>{handleClick('props')}}>Props</TabButton>
+              <TabButton isSelected = {selectedTopic === 'state'}  onClick={()=>{handleClick('state')}}>State</TabButton>
             </menu>
             
             {selectedTopic === undefined ? (
